@@ -2,49 +2,32 @@ async function images() {
     try {
         const response = await fetch ('http://localhost:3000/api/products/')
         const donnees = await response.json();
-        // console.log(JSON.stringify(donnees, null, 2));
+        
+        console.log(donnees)
 
-        let imagesHtml = "";
+        //Ajouter la selection du container
 
-        donnees.forEach(products  => {
+        const mainContainer = document.querySelector(".products")
 
-            imagesHtml += `
-            <img
-                image="${products.image}"
-                <p>${products.shorttitle}</p>
-            >
+        let globalHtml = "";
+
+        donnees.forEach(products => {
+            globalHtml += `
+            <article>
+                <img src="${products.image}" alt="${products.titre}">
+                <h1>${products.shorttitle}</h1>
+                <h2>${products.titre}</h2>
+                
+                <a href="/GeniArtHub/front/product.html">
+                    <button id="btn">Consulter les détails</button>
+                </a>
+            </article>
             `;
-            console.log(imagesHtml);
         });
 
-        const article = `
-            <article>
-                <h1>${donnees.shorttitle}</h1>
-                <h2>${donnees.titre}</h2>
-                <p>${donnees.description}</p>
+        // Injection tout d'un coup dans le conteneur
 
-                <div class="images">
-                    ${imagesHtml}
-                </div>
-            </article>
-        // `
-
-        // const main = document.getElementsByClassName("products")
-
-        // main.insertAdjacentHTML("beforeend", article)
-
-       document.getElementsByClassName("products").innerHtml = `
-        <article>
-            <h1>${donnees.shorttitle}</h1>
-            <h2>${donnees.titre}</h2>
-            <p>${donnees.description}</p>
-
-            <div class="images">
-                ${imagesHtml}
-            </div>
-        </article>
-        `;
-        // console.log(donnees)
+        mainContainer.innerHTML = globalHtml;
 
     } catch (error) {
         console.error(`Une erreur est survenue : ${error}`)
