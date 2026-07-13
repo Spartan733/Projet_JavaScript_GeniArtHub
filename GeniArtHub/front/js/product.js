@@ -64,6 +64,13 @@ async function detail() {
 
         productContainer.innerHTML = productHtml;
 
+        const shortDescription = document.querySelector(".short_description");
+        shortDescription.textContent = product.description.substring(0, 150) + "...";
+
+        
+        const fullDescription = document.querySelector(".full_description");
+        fullDescription.textContent = product.description;
+
     } catch (error) {
         console.log("Ereur lors de la récupération du produit", error);
     }

@@ -14,11 +14,11 @@ async function images() {
         donnees.forEach(products => {
             globalHtml += `
             <article>
-                <img src="${products.image}" alt="${products.titre}">
+                <img class="products" src="${products.image}" alt="${products.titre}">
                 <h1>${products.shorttitle}</h1>
                 <h2>${products.titre}</h2>
                 
-                <a href="/GeniArtHub/front/product.html">
+                <a href="/front/product.html">
                     <button id="btn">Consulter les détails</button>
                 </a>
             </article>
